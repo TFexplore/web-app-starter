@@ -47,7 +47,8 @@ form {
 input[type="text"],
 input[type="password"],
 input[type="url"],
-textarea {
+textarea,
+#app-category { /* 确保app-category也应用这些样式 */
     width: calc(100% - 22px);
     padding: 12px;
     margin-bottom: 15px;
@@ -61,7 +62,8 @@ textarea {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="url"]:focus,
-textarea:focus {
+textarea:focus,
+#app-category:focus { /* 确保app-category也应用这些焦点样式 */
     border-color: var(--focus-border-color, #007bff);
     outline: none;
     box-shadow: 0 0 0 3px var(--focus-shadow-color, rgba(0,123,255,0.1));

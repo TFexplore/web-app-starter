@@ -71,7 +71,8 @@
                 <input type="text" id="app-name" placeholder="名称" required>
                 <input type="url" id="app-url" placeholder="URL" required>
                 <input type="text" id="app-notes" placeholder="备注">
-                <input type="text" id="app-category" placeholder="分类 (例如: 开发, 社交)" required>
+                <input type="text" id="app-category" list="category-list" placeholder="选择或输入分类" required>
+                <datalist id="category-list"></datalist>
                 <button type="submit">保存</button>
                 <button type="button" id="cancel-app-btn">取消</button>
             </form>

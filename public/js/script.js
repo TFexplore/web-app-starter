@@ -187,6 +187,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openAppModal(app = null) {
         appModal.style.display = 'flex';
+        const categoryList = document.getElementById('category-list');
+        categoryList.innerHTML = ''; // 清空datalist
+
+        const categories = new Set();
+        allApplications.forEach(appItem => categories.add(appItem.category));
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            categoryList.appendChild(option);
+        });
+
         if (app) {
             appIdInput.value = app.id;
             appNameInput.value = app.name;
@@ -198,7 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
             appNameInput.value = '';
             appUrlInput.value = '';
             appNotesInput.value = '';
-            appCategoryInput.value = '';
+            // 如果当前分类不是“所有”，则自动填充
+            if (currentCategory !== '所有') {
+                appCategoryInput.value = currentCategory;
+            } else {
+                appCategoryInput.value = '';
+            }
         }
     }
 
