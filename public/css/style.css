@@ -1,0 +1,492 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    height: 100vh;
+    width: 100%;
+}
+
+.container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* 使内容两端对齐 */
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--header-border);
+    padding-bottom: 10px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+    border-color: var(--focus-border-color, #007bff);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--focus-shadow-color, rgba(0,123,255,0.1));
+    background-color: var(--focus-bg-color, #fff);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--button-bg, #007bff); /* 使用CSS变量 */
+    color: var(--button-text-color, white); /* 使用CSS变量 */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg, #0056b3); /* 使用CSS变量 */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+button#register-btn {
+    background-color: var(--register-btn-bg, #28a745);
+}
+
+button#register-btn:hover {
+    background-color: var(--register-btn-hover-bg, #218838);
+}
+
+button#logout-btn {
+    background-color: var(--logout-btn-bg, #dc3545);
+}
+
+button#logout-btn:hover {
+    background-color: var(--logout-btn-hover-bg, #c82333);
+}
+
+button#theme-toggle-btn {
+    background-color: var(--theme-toggle-btn-bg, #6c757d);
+    color: var(--theme-toggle-btn-color, white);
+}
+
+button#theme-toggle-btn:hover {
+    background-color: var(--theme-toggle-btn-hover-bg, #5a6268);
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+.app-section {
+    flex: 3; /* 75% */
+    border-right: 1px solid #eee;
+    padding-right: 20px;
+}
+
+.memo-section {
+    flex: 1; /* 25% */
+    padding-left: 20px;
+}
+
+.memo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* 添加一些底部间距 */
+}
+
+.memo-header h2 {
+    margin: 0; /* 移除h2的默认外边距 */
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* 添加一些底部间距 */
+}
+
+.app-header h2 {
+    margin: 0; /* 移除h2的默认外边距 */
+    font-size: 1.8em; /* 加大字体大小 */
+}
+
+.app-item, .memo-item {
+    background-color: #ffffff;
+    border: 1px solid #e2e6ea;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-word;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.app-item:hover, .memo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    border-color: #007bff;
+}
+
+.app-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.2em; /* 加大应用项标题字体大小 */
+    display: block; /* 确保链接独占一行，方便点击 */
+    margin-bottom: 5px;
+}
+
+.app-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.memo-item p {
+    margin: 0;
+    flex-grow: 1; /* 让内容占据更多空间 */
+}
+
+.memo-item small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 0.8em;
+}
+
+.actions {
+    display: flex;
+    gap: 5px; /* 按钮之间增加间距 */
+    flex-shrink: 0; /* 防止按钮被压缩 */
+}
+
+.actions button {
+    margin-left: 0; /* 移除默认的margin-left */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .app-section {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+
+    .memo-section {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 8px;
+    font-weight: 500;
+    color: #495057;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.tab-button:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+.tab-button.active {
+    background-color: var(--tab-button-active-bg);
+    color: var(--tab-button-active-color);
+    border-bottom: 2px solid var(--tab-button-active-border);
+}
+
+.app-item, .memo-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.app-item a:hover {
+    text-decoration: underline;
+}
+
+.app-item .actions button, .memo-item .actions button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 0.8em;
+}
+
+.memo-item p {
+    margin: 0;
+}
+
+#auth-message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal form {
+    margin-top: 20px;
+}
+
+/* Theme variables */
+:root {
+    --background-color: #f0f2f5;
+    --text-color: #1a1a1a;
+    --container-bg: #fff;
+    --header-border: #eee;
+    --h-color: #333;
+    --form-bg: #f9f9f9;
+    --input-bg: #f8f9fa;
+    --input-border: #e1e1e1;
+    --app-memo-item-bg: #ffffff;
+    --app-memo-item-border: #e2e6ea;
+    --app-memo-item-text: #666;
+    --memo-small-text: #888;
+    --tab-button-bg: #f8f9fa;
+    --tab-button-color: #495057;
+    --tab-button-hover-bg: #e9ecef;
+    --tab-button-active-bg: #007bff;
+    --tab-button-active-color: white;
+    --tab-button-active-border: #0056b3;
+    --modal-bg: #fefefe;
+    --modal-border: #888;
+    --close-button-color: #aaa;
+
+    --button-bg: #007bff;
+    --button-text-color: white;
+    --button-hover-bg: #0056b3;
+    --register-btn-bg: #28a745;
+    --register-btn-hover-bg: #218838;
+    --logout-btn-bg: #dc3545;
+    --logout-btn-hover-bg: #c82333;
+    --theme-toggle-btn-bg: #6c757d;
+    --theme-toggle-btn-color: white;
+    --theme-toggle-btn-hover-bg: #5a6268;
+
+    --focus-border-color: #007bff;
+    --focus-shadow-color: rgba(0,123,255,0.1);
+    --focus-bg-color: #f8f9fa;
+}
+
+[data-theme="dark"] {
+    --background-color: #282c34;
+    --text-color: #e0e0e0;
+    --container-bg: #3a3f47;
+    --header-border: #555;
+    --h-color: #f0f0f0;
+    --form-bg: #4a4f58;
+    --input-bg: #5a5f68;
+    --input-border: #6a6f78;
+    --app-memo-item-bg: #4a4f58;
+    --app-memo-item-border: #5a5f68;
+    --app-memo-item-text: #c0c0c0;
+    --memo-small-text: #a0a0a0;
+    --tab-button-bg: #4a4f58;
+    --tab-button-color: #e0e0e0;
+    --tab-button-hover-bg: #5a5f68;
+    --tab-button-active-bg: #676e7a; /* 使用焦点边框颜色作为激活背景 */
+    --tab-button-active-color: var(--text-color);
+    --tab-button-active-border: #676e7a; /* 匹配深色主题的边框颜色 */
+    --modal-bg: #3a3f47;
+    --modal-border: #555;
+    --close-button-color: #e0e0e0;
+
+    --button-bg: #5a6268; /* Darker blue for dark theme */
+    --button-text-color: #e0e0e0;
+    --button-hover-bg: #003f80;
+    --register-btn-bg: #1e7e34;
+    --register-btn-hover-bg: #155d28;
+    --logout-btn-bg: #bd2130;
+    --logout-btn-hover-bg: #a71d2a;
+    --theme-toggle-btn-bg: #5a6268;
+    --theme-toggle-btn-color: #e0e0e0;
+    --theme-toggle-btn-hover-bg: #494f54;
+
+    --focus-border-color: #6a9955; /* A distinct green for dark theme focus */
+    --focus-shadow-color: rgba(106,153,85,0.3);
+    --focus-bg-color: #4a4f58;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    background-color: var(--container-bg);
+}
+
+header {
+    border-bottom: 1px solid var(--header-border);
+}
+
+h1, h2, h3 {
+    color: var(--h-color);
+}
+
+form {
+    border: 1px solid var(--header-border);
+    background-color: var(--form-bg);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+textarea {
+    border: 2px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.app-item, .memo-item {
+    background-color: var(--app-memo-item-bg);
+    border: 1px solid var(--app-memo-item-border);
+}
+
+.app-item p {
+    color: var(--app-memo-item-text);
+}
+
+.memo-item small {
+    color: var(--memo-small-text);
+}
+
+.tab-button {
+    background-color: var(--tab-button-bg);
+    color: var(--tab-button-color);
+}
+
+.tab-button:hover {
+    background-color: var(--tab-button-hover-bg);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--modal-border);
+}
+
+.close-button {
+    color: var(--close-button-color);
+}

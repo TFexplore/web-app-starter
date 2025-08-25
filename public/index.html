@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 应用启动器</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 登录/注册页面 -->
+        <div id="auth-page" class="container">
+            <h2>登录 / 注册</h2>
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="用户名" required>
+                <input type="password" id="password" placeholder="密码" required>
+                <button type="submit" id="login-btn">登录</button>
+                <button type="button" id="register-btn">注册</button>
+            </form>
+            <p id="auth-message"></p>
+        </div>
+
+        <!-- 主应用页面 -->
+        <div id="main-page" class="container" style="display: none;">
+            <header>
+                <h1>Web 应用启动器</h1>
+                <div>
+                    <button id="theme-toggle-btn">切换主题</button>
+                    <button id="logout-btn">注销</button>
+                </div>
+            </header>
+            <div class="main-content">
+                <div class="app-section">
+                    <div class="app-header">
+                        <h2>我的应用</h2>
+                        <button id="add-app-btn">添加新应用</button>
+                    </div>
+                    <div class="tabs">
+                        <!-- 应用分类标签将在这里动态生成 -->
+                    </div>
+                    <div class="app-list">
+                        <!-- 应用列表将在这里动态生成 -->
+                    </div>
+                </div>
+                <div class="memo-section">
+                    <div class="memo-header">
+                        <h2>备忘录</h2>
+                        <button id="add-memo-btn">添加新备忘录</button>
+                    </div>
+                    <form id="memo-form" style="display: none;">
+                        <h3>添加/编辑备忘录</h3>
+                        <input type="hidden" id="memo-id">
+                        <textarea id="memo-content" placeholder="备忘录内容" required></textarea>
+                        <button type="submit">保存</button>
+                        <button type="button" id="cancel-memo-btn">取消</button>
+                    </form>
+                    <div class="memo-list">
+                        <!-- 备忘录列表将在这里动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <form id="app-form">
+                <h3>添加/编辑应用</h3>
+                <input type="hidden" id="app-id">
+                <input type="text" id="app-name" placeholder="名称" required>
+                <input type="url" id="app-url" placeholder="URL" required>
+                <input type="text" id="app-notes" placeholder="备注">
+                <input type="text" id="app-category" placeholder="分类 (例如: 开发, 社交)" required>
+                <button type="submit">保存</button>
+                <button type="button" id="cancel-app-btn">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

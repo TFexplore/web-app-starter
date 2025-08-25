@@ -1,27 +1,20 @@
 {
   "name": "appstarter",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "本项目旨在开发一个前后端一体的 Web 应用，提供一个便捷的网站应用启动器和个人备忘录管理功能。用户可以添加、管理其常用的网站应用，并按分类进行组织。同时，系统提供一个独立的备忘录功能，方便用户记录重要信息。为了确保数据安全，系统将包含用户登录认证功能。整个应用将尽可能保持简洁和易用。",
+  "main": "database.js",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.0"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.0",
-    "@eslint/eslintrc": "^3"
+    "bcryptjs": "^3.0.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
   }
 }
