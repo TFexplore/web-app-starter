@@ -1,3 +1,8 @@
+html, body {
+    height: 100%; /* 确保html和body占据整个视口高度 */
+    overflow: hidden; /* 禁用html和body的滚动条 */
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
@@ -15,7 +20,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: box-shadow 0.3s ease;
-    height: 100vh;
+    min-height: 100vh; /* 将height改为min-height */
     width: 100%;
 }
 
@@ -47,28 +52,44 @@ form {
 input[type="text"],
 input[type="password"],
 input[type="url"],
-textarea,
-#app-category { /* 确保app-category也应用这些样式 */
+#app-category { /* 将app-category移到这里，避免重复 */
     width: calc(100% - 22px);
     padding: 12px;
     margin-bottom: 15px;
-    border: 2px solid #e1e1e1;
+    border: 2px solid var(--input-border, #e1e1e1);
     border-radius: 8px;
     font-size: 16px;
     transition: all 0.3s ease;
-    background-color: #f8f9fa;
+    background-color: var(--input-bg, #f8f9fa);
+    color: var(--text-color, #1a1a1a);
+}
+
+textarea {
+    width: calc(100% - 22px); /* 保持宽度一致 */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid var(--input-border, #e1e1e1);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg, #f8f9fa);
+    color: var(--text-color, #1a1a1a);
+    resize: vertical; /* 允许垂直方向调整大小 */
+    min-height: 80px; /* 最小高度 */
+    max-height: 300px; /* 最大高度 */
+    overflow-y: auto; /* 超过最大高度时显示滚动条 */
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="url"]:focus,
-textarea:focus,
-#app-category:focus { /* 确保app-category也应用这些焦点样式 */
+textarea:focus {
     border-color: var(--focus-border-color, #007bff);
     outline: none;
     box-shadow: 0 0 0 3px var(--focus-shadow-color, rgba(0,123,255,0.1));
     background-color: var(--focus-bg-color, #fff);
 }
+
 
 button {
     padding: 10px 20px;
@@ -125,17 +146,24 @@ button#theme-toggle-btn:hover {
 .main-content {
     display: flex;
     gap: 20px;
+    flex: 1; /* 允许main-content填充可用空间 */
+    overflow: hidden; /* 隐藏超出部分，防止滚动条出现在container上 */
+    height: calc(100vh - 220px); /* 进一步调整减去的高度，以确保底部内容显示完整 */
 }
 
 .app-section {
     flex: 3; /* 75% */
-    border-right: 1px solid #eee;
+    border-right: 1px solid var(--header-border);
     padding-right: 20px;
+    overflow-y: auto; /* 允许垂直滚动 */
+    height: 100%; /* 填充父容器的高度 */
 }
 
 .memo-section {
     flex: 1; /* 25% */
     padding-left: 20px;
+    overflow-y: auto; /* 允许垂直滚动 */
+    height: 100%; /* 填充父容器的高度 */
 }
 
 .memo-header {
@@ -168,6 +196,7 @@ button#theme-toggle-btn:hover {
     margin-bottom: 15px;
     border-radius: 8px;
     display: flex;
+    flex-wrap: wrap; /* 允许内容换行 */
     justify-content: space-between;
     align-items: center;
     word-break: break-word;
@@ -216,6 +245,35 @@ button#theme-toggle-btn:hover {
 
 .actions button {
     margin-left: 0; /* 移除默认的margin-left */
+    padding: 5px 8px; /* 减小内边距 */
+    font-size: 0.8em; /* 减小字体大小 */
+    border-radius: 4px; /* 调整圆角 */
+    min-height: auto; /* 移除最小高度限制 */
+}
+
+.actions .icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-color); /* 使用主题文本颜色 */
+    font-size: 1.2em; /* 图标大小 */
+    padding: 5px;
+    margin: 0 2px;
+    transition: color 0.2s ease;
+}
+
+.actions .icon-btn:hover {
+    color: var(--focus-border-color); /* hover时变色 */
+    background-color: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+.actions .icon-btn.edit-btn {
+    color: var(--button-bg); /* 编辑按钮使用主色 */
+}
+
+.actions .icon-btn.delete-btn {
+    color: var(--logout-btn-bg); /* 删除按钮使用警告色 */
 }
 
 /* 响应式设计 */
@@ -293,6 +351,84 @@ button#theme-toggle-btn:hover {
     margin-left: 5px;
     padding: 5px 10px;
     font-size: 0.8em;
+}
+
+/* 调整actions容器，使其按钮靠右 */
+.app-item .actions, .memo-item .actions {
+    margin-left: auto; /* 将actions推到最右边 */
+}
+
+/* 新增布局样式 */
+.app-list.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* 每行只显示一个卡片 */
+    gap: 20px; /* 网格间距 */
+    margin-top: 20px;
+}
+
+.app-list.grid-layout .app-category-group {
+    background-color: var(--container-bg);
+    /* border: 1px solid var(--app-memo-item-border); */ /* 移除边框 */
+    border-radius: 8px;
+    padding: 0; /* 移除内边距 */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); */ /* 移除阴影 */
+    transition: all 0.2s ease;
+}
+
+.app-list.grid-layout .app-category-group:hover {
+    transform: none; /* 移除hover效果 */
+    box-shadow: none; /* 移除hover阴影 */
+}
+
+.app-list.grid-layout .app-category-group h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--h-color);
+    font-size: 1.4em;
+    border-bottom: 1px solid var(--header-border);
+    padding: 15px 15px 10px 15px; /* 恢复标题的内边距 */
+}
+
+.app-list.grid-layout .app-category-group .apps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px; /* 调整间距 */
+    padding: 0 15px 15px 15px; /* 为apps-container添加内边距 */
+}
+
+.app-list.grid-layout .app-item {
+    display: flex; /* 使内容水平排列 */
+    justify-content: space-between; /* 标题和按钮两端对齐 */
+    align-items: center; /* 垂直居中 */
+    padding: 10px;
+    margin-bottom: 0; /* 移除外边距，由父容器的gap控制 */
+    border: 1px solid var(--app-memo-item-border);
+    border-radius: 5px;
+    background-color: var(--app-memo-item-bg);
+    box-shadow: none; /* 移除单个app-item的阴影 */
+}
+
+.app-list.grid-layout .app-item:hover {
+    transform: none; /* 移除单个app-item的hover效果 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 添加轻微阴影 */
+    border-color: var(--focus-border-color);
+}
+
+.app-list.grid-layout .app-item a {
+    font-size: 1.1em;
+    margin-bottom: 0; /* 移除底部外边距 */
+    flex-grow: 1; /* 允许链接占据更多空间 */
+}
+
+.app-list.grid-layout .app-item p {
+    font-size: 0.85em;
+    color: var(--app-memo-item-text);
+}
+
+.app-list.grid-layout .app-item .actions {
+    margin-top: 0; /* 移除顶部外边距 */
+    width: auto; /* 宽度自适应 */
+    justify-content: flex-end; /* 按钮右对齐 */
 }
 
 .memo-item p {
@@ -390,6 +526,12 @@ button#theme-toggle-btn:hover {
     --focus-border-color: #007bff;
     --focus-shadow-color: rgba(0,123,255,0.1);
     --focus-bg-color: #f8f9fa;
+
+    /* Scrollbar variables */
+    --scrollbar-track-bg: #f1f1f1;
+    --scrollbar-thumb-bg: #888;
+    --scrollbar-thumb-border: #f1f1f1;
+    --scrollbar-thumb-hover-bg: #555;
 }
 
 [data-theme="dark"] {
@@ -410,7 +552,7 @@ button#theme-toggle-btn:hover {
     --tab-button-hover-bg: #5a5f68;
     --tab-button-active-bg: #676e7a; /* 使用焦点边框颜色作为激活背景 */
     --tab-button-active-color: var(--text-color);
-    --tab-button-active-border: #676e7a; /* 匹配深色主题的边框颜色 */
+    --tab-button-active-border: #8ab4f8; /* 调整深色主题的激活边框颜色，使其更亮 */
     --modal-bg: #3a3f47;
     --modal-border: #555;
     --close-button-color: #e0e0e0;
@@ -429,6 +571,12 @@ button#theme-toggle-btn:hover {
     --focus-border-color: #6a9955; /* A distinct green for dark theme focus */
     --focus-shadow-color: rgba(106,153,85,0.3);
     --focus-bg-color: #4a4f58;
+
+    /* Dark theme scrollbar variables */
+    --scrollbar-track-bg: #3a3f47;
+    --scrollbar-thumb-bg: #6a6f78;
+    --scrollbar-thumb-border: #3a3f47;
+    --scrollbar-thumb-hover-bg: #8a8f98;
 }
 
 body {
@@ -491,4 +639,26 @@ textarea {
 
 .close-button {
     color: var(--close-button-color);
+}
+
+/* 滚动条样式 */
+/* 针对所有支持自定义滚动条的浏览器 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+    border-radius: 5px;
+    border: 2px solid var(--scrollbar-thumb-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-bg);
 }

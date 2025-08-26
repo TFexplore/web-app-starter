@@ -1,9 +1,10 @@
 # Web 应用启动器与备忘录管理系统设计文档
 
 ## 快速开始
-npm install
-node server.js
-访问：locahost:8080
+
+* npm install
+* node server.js
+* 访问：locahost:8080
 
 ## 1. 项目概述
 
