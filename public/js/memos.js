@@ -37,8 +37,8 @@ function renderMemos() {
                 <small>${new Date(memo.createdAt).toLocaleString()}</small>
             </div>
             <div class="actions memo-actions-display">
-                <button data-id="${memo.id}" class="edit-memo-btn icon-btn edit-btn" title="编辑">&#9998;</button>
-                <button data-id="${memo.id}" class="delete-memo-btn icon-btn delete-btn" title="删除">&#128465;</button>
+                <button data-id="${memo.id}" class="edit-memo-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
+                <button data-id="${memo.id}" class="delete-memo-btn icon-btn delete-btn" title="删除"><span class="delete-icon">&#128465;</span></button>
             </div>
         `;
         elements.memoListContainer.appendChild(memoItem);

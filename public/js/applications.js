@@ -87,7 +87,7 @@ function renderListLayout() {
                 <p>${app.notes ? `(${app.notes})` : ''}</p>
             </div>
             <div class="actions">
-                <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑">&#9998;</button>
+                <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
                 <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
             </div>
         `;
@@ -128,10 +128,10 @@ function renderGridLayout() {
                     <a href="${app.url}" target="_blank">${app.name}</a>
                     <p>${app.notes ? `(${app.notes})` : ''}</p>
                 </div>
-                <div class="actions">
-                    <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑">&#9998;</button>
-                    <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
-                </div>
+            <div class="actions">
+                <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
+                <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
+            </div>
             `;
             appsContainer.appendChild(appItem);
         });

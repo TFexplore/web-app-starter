@@ -276,6 +276,18 @@ button#theme-toggle-btn:hover {
     color: var(--logout-btn-bg); /* 删除按钮使用警告色 */
 }
 
+.edit-icon {
+    color: #007bff; /* 蓝色 */
+}
+
+[data-theme="dark"] .edit-icon {
+    color: #8ab4f8; /* 深色主题下的浅蓝色 */
+}
+
+.delete-icon {
+    color: var(--logout-btn-bg); /* 删除按钮使用警告色 */
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .main-content {
