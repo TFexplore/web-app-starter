@@ -145,6 +145,17 @@ button#theme-toggle-btn:hover {
     background-color: var(--theme-toggle-btn-hover-bg, #5a6268);
 }
 
+button#about-page-btn,
+button#back-to-main-btn {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+}
+
+button#about-page-btn:hover,
+button#back-to-main-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
 .main-content {
     display: flex;
     gap: 20px;
@@ -619,6 +630,57 @@ button#theme-toggle-btn:hover {
     --scrollbar-thumb-bg: #6a6f78;
     --scrollbar-thumb-border: #3a3f47;
     --scrollbar-thumb-hover-bg: #8a8f98;
+}
+
+/* About Page Styles */
+#about-page {
+    padding: 20px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    width: 100%;
+}
+
+#about-page header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--header-border);
+    padding-bottom: 10px;
+}
+
+#about-page h1 {
+    margin: 0;
+    color: var(--h-color);
+}
+
+.about-content {
+    padding: 20px;
+    background-color: var(--form-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.about-content h2 {
+    color: var(--h-color);
+    margin-top: 0;
+    border-bottom: 1px solid var(--header-border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    margin-bottom: 10px;
+}
+
+.about-content a {
+    color: var(--button-bg);
+    text-decoration: none;
+}
+
+.about-content a:hover {
+    text-decoration: underline;
 }
 
 body {

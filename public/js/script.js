@@ -11,4 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMemoListeners();
     initializeTheme();
     checkAuthAndLoadContent();
+
+    const aboutPageBtn = document.getElementById('about-page-btn');
+    if (aboutPageBtn) {
+        aboutPageBtn.addEventListener('click', () => {
+            window.location.href = '/about.html';
+        });
+    }
 });
