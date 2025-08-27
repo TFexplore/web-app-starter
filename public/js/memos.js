@@ -32,23 +32,25 @@ function renderMemos() {
         memoItem.dataset.id = memo.id; // 添加data-id以便查找
 
         memoItem.innerHTML = `
-            <div class="memo-display">
+            <div class="memo-content">
                 <p>${memo.content}</p>
-                <small>${new Date(memo.createdAt).toLocaleString()}</small>
             </div>
-            <div class="actions memo-actions-display">
-                <button data-id="${memo.id}" class="edit-memo-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
-                <button data-id="${memo.id}" class="delete-memo-btn icon-btn delete-btn" title="删除"><span class="delete-icon">&#128465;</span></button>
+            <div class="memo-header-actions">
+                <small>${new Date(memo.createdAt).toLocaleString()}</small>
+                <div class="actions memo-actions-display">
+                    <button data-id="${memo.id}" class="edit-memo-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
+                    <button data-id="${memo.id}" class="delete-memo-btn icon-btn delete-btn" title="删除"><span class="delete-icon">&#128465;</span></button>
+                </div>
             </div>
         `;
         elements.memoListContainer.appendChild(memoItem);
     });
 
     elements.memoListContainer.querySelectorAll('.edit-memo-btn').forEach(button => {
-        button.addEventListener('click', (e) => toggleEditMemo(e.target.dataset.id)); // 移除isEditing参数
+        button.addEventListener('click', (e) => toggleEditMemo(e.currentTarget.dataset.id)); // 移除isEditing参数
     });
     elements.memoListContainer.querySelectorAll('.delete-memo-btn').forEach(button => {
-        button.addEventListener('click', (e) => deleteMemoHandler(e.target.dataset.id));
+        button.addEventListener('click', (e) => deleteMemoHandler(e.currentTarget.dataset.id));
     });
 }
 

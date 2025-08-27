@@ -195,13 +195,23 @@ button#theme-toggle-btn:hover {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap; /* 允许内容换行 */
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* 保持flex */
+    flex-direction: column; /* 使内部元素垂直堆叠 */
     word-break: break-word;
     transition: all 0.2s ease;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.app-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* 确保头部占据全部宽度 */
+    margin-bottom: 5px; /* 标题和内容之间留一点间距 */
+}
+
+.app-item-content {
+    width: 100%; /* 确保内容占据全部宽度 */
 }
 
 .app-item:hover, .memo-item:hover {
@@ -225,16 +235,35 @@ button#theme-toggle-btn:hover {
     color: #666;
 }
 
-.memo-item p {
-    margin: 0;
-    flex-grow: 1; /* 让内容占据更多空间 */
+.memo-item {
+    display: flex;
+    flex-direction: column; /* 使内部元素垂直堆叠 */
+}
+
+.memo-header-actions {
+    display: flex;
+    justify-content: space-between; /* 日期和操作按钮两端对齐 */
+    align-items: center;
+    margin-bottom: 10px; /* 头部和内容之间留一点间距 */
+    width: 100%; /* 确保宽度为100% */
 }
 
 .memo-item small {
-    display: block;
-    margin-top: 5px;
-    color: #888;
-    font-size: 0.8em;
+    color: var(--memo-small-text);
+    font-size: 0.85em;
+    flex-shrink: 0; /* 防止日期被压缩 */
+}
+
+.memo-content {
+    flex-grow: 1; /* 让内容占据更多空间 */
+    width: 100%; /* 确保宽度为100% */
+    text-align: left; /* 内容左对齐 */
+}
+
+.memo-item p {
+    margin: 0;
+    font-size: 0.95em;
+    color: var(--app-memo-item-text);
 }
 
 .actions {
@@ -409,9 +438,8 @@ button#theme-toggle-btn:hover {
 }
 
 .app-list.grid-layout .app-item {
-    display: flex; /* 使内容水平排列 */
-    justify-content: space-between; /* 标题和按钮两端对齐 */
-    align-items: center; /* 垂直居中 */
+    display: flex; /* 保持flex */
+    flex-direction: column; /* 使内部元素垂直堆叠 */
     padding: 10px;
     margin-bottom: 0; /* 移除外边距，由父容器的gap控制 */
     border: 1px solid var(--app-memo-item-border);
@@ -429,7 +457,7 @@ button#theme-toggle-btn:hover {
 .app-list.grid-layout .app-item a {
     font-size: 1.1em;
     margin-bottom: 0; /* 移除底部外边距 */
-    flex-grow: 1; /* 允许链接占据更多空间 */
+    /* flex-grow: 1; */ /* 移除flex-grow，因为父容器不再是flex */
 }
 
 .app-list.grid-layout .app-item p {
@@ -440,7 +468,7 @@ button#theme-toggle-btn:hover {
 .app-list.grid-layout .app-item .actions {
     margin-top: 0; /* 移除顶部外边距 */
     width: auto; /* 宽度自适应 */
-    justify-content: flex-end; /* 按钮右对齐 */
+    /* justify-content: flex-end; */ /* 移除justify-content，因为父容器不再是flex */
 }
 
 .memo-item p {

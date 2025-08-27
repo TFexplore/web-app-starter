@@ -63,7 +63,7 @@ function renderApplications() {
 
     // 重新绑定事件监听器
     elements.appListContainer.querySelectorAll('.edit-app-btn').forEach(button => {
-        button.addEventListener('click', (e) => editApplication(e.target.dataset.id));
+        button.addEventListener('click', (e) => editApplication(e.currentTarget.dataset.id));
     });
     elements.appListContainer.querySelectorAll('.delete-app-btn').forEach(button => {
         button.addEventListener('click', (e) => deleteApplicationHandler(e.target.dataset.id));
@@ -82,13 +82,15 @@ function renderListLayout() {
         const appItem = document.createElement('div');
         appItem.classList.add('app-item');
         appItem.innerHTML = `
-            <div>
+            <div class="app-item-header">
                 <a href="${app.url}" target="_blank">${app.name}</a>
-                <p>${app.notes ? `(${app.notes})` : ''}</p>
+                <div class="actions">
+                    <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
+                    <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
+                </div>
             </div>
-            <div class="actions">
-                <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
-                <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
+            <div class="app-item-content">
+                <p>${app.notes ? `(${app.notes})` : ''}</p>
             </div>
         `;
         elements.appListContainer.appendChild(appItem);
@@ -124,14 +126,16 @@ function renderGridLayout() {
             const appItem = document.createElement('div');
             appItem.classList.add('app-item');
             appItem.innerHTML = `
-                <div>
+                <div class="app-item-header">
                     <a href="${app.url}" target="_blank">${app.name}</a>
+                    <div class="actions">
+                        <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
+                        <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
+                    </div>
+                </div>
+                <div class="app-item-content">
                     <p>${app.notes ? `(${app.notes})` : ''}</p>
                 </div>
-            <div class="actions">
-                <button data-id="${app.id}" class="edit-app-btn icon-btn edit-btn" title="编辑"><span class="edit-icon">&#9998;</span></button>
-                <button data-id="${app.id}" class="delete-app-btn icon-btn delete-btn" title="删除">&#128465;</button>
-            </div>
             `;
             appsContainer.appendChild(appItem);
         });
