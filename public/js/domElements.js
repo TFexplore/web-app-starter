@@ -5,6 +5,7 @@ export function initializeDOMElements() {
     elements.mainPage = document.getElementById('main-page');
     elements.authForm = document.getElementById('auth-form');
     elements.usernameInput = document.getElementById('username');
+    elements.emailInput = document.getElementById('email');
     elements.passwordInput = document.getElementById('password');
     elements.loginBtn = document.getElementById('login-btn');
     elements.registerBtn = document.getElementById('register-btn');

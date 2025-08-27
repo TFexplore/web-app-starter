@@ -24,14 +24,14 @@ export async function fetchData(url, method = 'GET', body = null) {
     return response.json();
 }
 
-export async function login(username, password) {
-    const data = await fetchData(`/api/auth/login`, 'POST', { username, password });
+export async function login(email, password) {
+    const data = await fetchData(`/api/auth/login`, 'POST', { email, password });
     localStorage.setItem('token', data.token);
     return data;
 }
 
-export async function register(username, password) {
-    return await fetchData(`/api/auth/register`, 'POST', { username, password });
+export async function register(username, email, password) {
+    return await fetchData(`/api/auth/register`, 'POST', { username, email, password });
 }
 
 export function logout() {

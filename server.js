@@ -1,5 +1,24 @@
-const express = require('express');
+const fs = require('fs');
 const path = require('path');
+
+// 手动加载 .env 文件
+const envPath = path.resolve(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+    const envConfig = fs.readFileSync(envPath, 'utf8');
+    envConfig.split('\n').forEach(line => {
+        const trimmedLine = line.trim();
+        if (trimmedLine && !trimmedLine.startsWith('#')) {
+            const parts = trimmedLine.split('=');
+            if (parts.length === 2) {
+                const key = parts[0].trim();
+                const value = parts[1].trim().replace(/^"|"$/g, ''); // 移除双引号
+                process.env[key] = value;
+            }
+        }
+    });
+}
+
+const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 8080;

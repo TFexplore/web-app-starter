@@ -4,14 +4,19 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key'; // 生产环境中应使用更安全的密钥
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+    console.error('FATAL ERROR: JWT_SECRET is not defined. Please set this environment variable.');
+    process.exit(1);
+}
 
 // 注册用户
 router.post('/register', (req, res) => {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Username and password are required' });
+    if (!username || !email || !password) {
+        return res.status(400).json({ message: 'Username, email, and password are required' });
     }
 
     bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -19,10 +24,10 @@ router.post('/register', (req, res) => {
             return res.status(500).json({ message: 'Error hashing password' });
         }
 
-        db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], function(err) {
+        db.run('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword], function(err) {
             if (err) {
                 if (err.message.includes('UNIQUE constraint failed')) {
-                    return res.status(409).json({ message: 'Username already exists' });
+                    return res.status(409).json({ message: 'Email already exists' });
                 }
                 return res.status(500).json({ message: 'Error registering user', error: err.message });
             }
@@ -33,13 +38,13 @@ router.post('/register', (req, res) => {
 
 // 登录用户
 router.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Username and password are required' });
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    db.get('SELECT * FROM users WHERE username = ?', [username], (err, user) => {
+    db.get('SELECT * FROM users WHERE email = ?', [email], (err, user) => {
         if (err) {
             return res.status(500).json({ message: 'Error logging in', error: err.message });
         }

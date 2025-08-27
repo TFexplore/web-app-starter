@@ -50,6 +50,7 @@ form {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"],
 input[type="url"],
 #app-category { /* 将app-category移到这里，避免重复 */
@@ -81,6 +82,7 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="url"]:focus,
 textarea:focus {
